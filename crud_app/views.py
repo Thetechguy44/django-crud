@@ -23,6 +23,10 @@ def store(request):
     a = request.POST['age']       
     c = request.POST['country']   
 
+    if not all([f, l, e, p, g, a, c]):
+        messages.error(request, "All fields are required. Please fill in all the information.")
+        return redirect('create')
+
     candidate = Candidate(
         firstname=f,
         lastname=l,
